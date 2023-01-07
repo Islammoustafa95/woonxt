@@ -70,6 +70,7 @@ def create_item(woocommerce_item, warehouse, has_variant=0, attributes=None, var
         "variant_of": variant_of,
         "sync_with_woocommerce": 1,
         "is_stock_item": 1,
+	"stock_keeping_unit": item_code,
         "item_name": woocommerce_item.get("name"),
         "valuation_method": valuation_method,
         "description": woocommerce_item.get("description") or woocommerce_item.get("name"),
@@ -469,6 +470,7 @@ def sync_item_with_woocommerce(item, price_list, warehouse, woocommerce_item=Non
     variant_list = []
     item_data = {
             "name": item.get("item_name"),
+	    "sku": item.get("item_code"),
             "description": item.get("woocommerce_description") or item.get("web_long_description") or item.get("description"),
             "short_description": item.get("description") or item.get("web_long_description") or item.get("woocommerce_description"),
     }
